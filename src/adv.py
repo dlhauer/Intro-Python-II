@@ -38,7 +38,6 @@ action = ''
 directions = ['n', 's', 'e', 'w']
 accepted_actions = directions.copy()
 accepted_actions.append('q')
-print(directions, accepted_actions)
 while action != 'q':
     print(
         f'\nCurrent room: {player.current_room.name}.\n'
@@ -52,7 +51,18 @@ while action != 'q':
     q - quit\n""")
     if action not in accepted_actions:
         print('\nWhoa, try that again. Make sure you enter a valid command.')
-    # move
+    elif action == 'q':
+        print('\nI never thought you were cut out for this adventure, anyway. '
+              f'Have a nice life, {player.name}, you big quitter.\n'
+              )
+        break
+    else:
+        next_room = getattr(player.current_room, f'{action}_to')
+        if next_room:
+            player.current_room = next_room
+        else:
+            print('\nOops! There is nothing in that direction. Try again.')
+
 
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
