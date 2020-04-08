@@ -1,24 +1,41 @@
 from room import Room
 from player import Player
+from item import Item
 from textwrap import wrap
 
+mappy = Item('map', 'A dusty map. Only the faintest detail is discernible.')
+suit = Item('suit of armor', 'An old suit of iron. But where is its owner?')
+candelabra = Item(
+    'candelabra', 'The half-burned candles are still warm to the touch.')
+quill_and_ink = Item(
+    'quill and ink', 'A worn quill tip. Enough ink only to make a few essential notes.')
+parchment = Item(
+    'parchment', 'Weathered and old, yet its surface is perfectly clean.')
+rope = Item('rope', 'Rough to the touch. Forty fathoms in length')
+sword = Item(
+    'sword', 'An exceedingly well–cared-for blade. A bronze snake coiled around the hilt.')
+keys = Item('rusty keys',
+            'A ring of five keys. So worn and rusted, would they fit in a lock any more?')
+envelope = Item('wax sealed envelope',
+                'A yellowed envelope sealed with wax. Do you dare open it?')
+compass = Item('compass', 'Find North, the only truth that remains certain.')
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons.", ['map', 'suit of armor']),
+                     "North of you, the cave mount beckons.", [mappy, suit]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", ['candelabra', 'quill and ink', 'parchment']),
+passages run north and east.""", [candelabra, quill_and_ink, parchment]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", ['rope']),
+the distance, but there is no way across the chasm.""", [rope]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", ['sword', 'rusty keys', 'wax-sealed envelope']),
+to north. The smell of gold permeates the air.""", [sword, keys, envelope]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", ['compass']),
+earlier adventurers. The only exit is to the south.""", [compass]),
 }
 
 room['outside'].n_to = room['foyer']
@@ -41,7 +58,7 @@ while True:
         'Available items:'
     )
     for item in player.current_room.items:
-        print(item)
+        print(f'{item.name}: {item.description}')
     action = input("""\nWhat would you like to do?\n
     n - move north\n
     s - move south\n
