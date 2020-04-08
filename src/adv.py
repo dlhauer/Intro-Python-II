@@ -32,7 +32,6 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
-
 #
 # Main
 #
@@ -40,7 +39,15 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 
 # Write a loop that:
-#
+action = True
+while action != 'q':
+
+    action = input("""What would you like to do?\n
+    n - move north\n
+    s - move south\n
+    e - move east\n
+    w - move west\n
+    q - quit\n""")
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
