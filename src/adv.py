@@ -59,7 +59,7 @@ while action != 'q':
     else:
         next_room = getattr(player.current_room, f'{action}_to')
         if next_room:
-            player.current_room = next_room
+            player.set_room(next_room)
         else:
             print('\nOops! There is nothing in that direction. Try again.')
 
