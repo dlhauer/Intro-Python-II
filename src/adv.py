@@ -30,11 +30,10 @@ room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 player = Player('Daaaaaaaaan', room['outside'])
-action = ''
 directions = ['n', 's', 'e', 'w']
 accepted_actions = directions.copy()
 accepted_actions.append('q')
-while action != 'q':
+while True:
     print(
         f'\nCurrent room: {player.current_room.name}.\n'
         f'{player.current_room.description}\n'
