@@ -4,7 +4,7 @@ from player import Player
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons."),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -41,7 +41,10 @@ player = Player('Daaaaaaaaan', room['outside'])
 # Write a loop that:
 action = True
 while action != 'q':
-
+    print(
+        f"\nCurrent room: {player.current_room.name}.\n"
+        f"{player.current_room.description}\n"
+    )
     action = input("""What would you like to do?\n
     n - move north\n
     s - move south\n
