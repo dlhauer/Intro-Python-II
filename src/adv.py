@@ -1,6 +1,5 @@
 from room import Room
 from player import Player
-# Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -20,9 +19,6 @@ to north. The smell of gold permeates the air."""),
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
-
-
-# Link rooms together
 
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
@@ -62,9 +58,3 @@ while action != 'q':
             player.set_room(next_room)
         else:
             print('\nOops! There is nothing in that direction. Try again.')
-
-
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
