@@ -35,7 +35,10 @@ room['treasure'].s_to = room['narrow']
 
 player = Player('Daaaaaaaaan', room['outside'])
 action = ''
-accepted_actions = ['n', 's', 'e', 'w', 'q']
+directions = ['n', 's', 'e', 'w']
+accepted_actions = directions.copy()
+accepted_actions.append('q')
+print(directions, accepted_actions)
 while action != 'q':
     print(
         f'\nCurrent room: {player.current_room.name}.\n'
@@ -49,6 +52,7 @@ while action != 'q':
     q - quit\n""")
     if action not in accepted_actions:
         print('\nWhoa, try that again. Make sure you enter a valid command.')
+    # move
 
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
