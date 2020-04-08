@@ -32,33 +32,24 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
-#
-# Main
-#
 
-# Make a new player object that is currently in the 'outside' room.
 player = Player('Daaaaaaaaan', room['outside'])
-# Write a loop that:
-action = 'n'
-accepted_actions = ('n', 's', 'e', 'w', 'q')
+action = ''
+accepted_actions = ['n', 's', 'e', 'w', 'q']
 while action != 'q':
-    if action not in accepted_actions:
-        print('\nWhoa, try that again.')
-    else:
-        print(
-            f'\nCurrent room: {player.current_room.name}.\n'
-            f'{player.current_room.description}\n'
-        )
+    print(
+        f'\nCurrent room: {player.current_room.name}.\n'
+        f'{player.current_room.description}\n'
+    )
     action = input("""What would you like to do?\n
     n - move north\n
     s - move south\n
     e - move east\n
     w - move west\n
     q - quit\n""")
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
+    if action not in accepted_actions:
+        print('\nWhoa, try that again. Make sure you enter a valid command.')
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
