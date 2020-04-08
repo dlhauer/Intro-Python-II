@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from textwrap import wrap
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -47,9 +48,11 @@ while True:
     if action not in accepted_actions:
         print('\nWhoa, try that again. Make sure you enter a valid command.')
     elif action == 'q':
-        print('\nI never thought you were cut out for this adventure, anyway. '
-              f'Have a nice life, {player.name}, you big quitter.\n'
-              )
+        text = wrap('I never thought you were cut out for this adventure, anyway. '
+                    f'Have a nice life, {player.name}, you big quitter.\n', 60)
+        print('\n')
+        for line in text:
+            print(line)
         break
     else:
         next_room = getattr(player.current_room, f'{action}_to')
