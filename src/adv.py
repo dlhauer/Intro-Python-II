@@ -39,12 +39,16 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 player = Player('Daaaaaaaaan', room['outside'])
 # Write a loop that:
-action = True
+action = 'n'
+accepted_actions = ('n', 's', 'e', 'w', 'q')
 while action != 'q':
-    print(
-        f"\nCurrent room: {player.current_room.name}.\n"
-        f"{player.current_room.description}\n"
-    )
+    if action not in accepted_actions:
+        print('\nWhoa, try that again.')
+    else:
+        print(
+            f'\nCurrent room: {player.current_room.name}.\n'
+            f'{player.current_room.description}\n'
+        )
     action = input("""What would you like to do?\n
     n - move north\n
     s - move south\n
