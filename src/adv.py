@@ -57,6 +57,9 @@ directions = [
 ]
 accepted_actions = directions.copy()
 accepted_actions.extend([
+    Action('i', 'print inventory'),
+    Action('take [item]', 'add [item] to your inventory'),
+    Action('drop [item]', 'leave [item] in current room'),
     Action('q', 'quit')
 ])
 while True:
@@ -71,8 +74,11 @@ while True:
             print(line)
     choices = '\n'.join(
         list(map(lambda action: f'{action.key} - {action.value}', accepted_actions)))
-    action = input(f'\nWhat would you like to do?\n{choices}\n')
-    if action not in list(map(lambda action: action.key, accepted_actions)):
+    player_input = input(f'\nWhat would you like to do?\n{choices}\n').split()
+    action = player_input[0]
+    if len(player_input) == 2:
+        item = player_input[1]
+    if action not in list(map(lambda action: action.key.split()[0], accepted_actions)):
         print('\nWhoa, try that again. Make sure you enter a valid command.')
     elif action == 'q':
         text = wrap('I never thought you were cut out for this adventure, anyway. '
