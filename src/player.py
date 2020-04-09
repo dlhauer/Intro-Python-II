@@ -13,3 +13,6 @@ class Player:
 
     def add_item(self, item):
         self.inventory.append(item)
+
+    def drop_item(self, item):
+        self.inventory = list(filter(lambda i: i.name != item, self.inventory))
