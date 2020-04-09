@@ -3,7 +3,7 @@
 
 
 class Room:
-    def __init__(self, name, description, items=None):
+    def __init__(self, name, description, items=None, is_light):
         self.name = name
         self.description = description
         self.n_to = ''
@@ -11,6 +11,7 @@ class Room:
         self.e_to = ''
         self.w_to = ''
         self.items = [] if items == None else items
+        self.is_light = is_light
 
     def get_item(self, item):
         room_item = list(filter(lambda i: i.name == item, self.items))
