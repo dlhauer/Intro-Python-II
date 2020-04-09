@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from item import Item
+from action import Action
 from textwrap import wrap
 
 mappy = Item('map', 'A dusty map. Only the faintest detail is discernible.')
@@ -48,26 +49,30 @@ room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 player = Player('Daaaaaaaaan', room['outside'])
-directions = ['n', 's', 'e', 'w']
+directions = [
+    Action('n', 'move north'),
+    Action('s', 'move south'),
+    Action('e', 'move east'),
+    Action('w', 'move west')
+]
 accepted_actions = directions.copy()
-accepted_actions.append('q')
+accepted_actions.extend([
+    Action('q', 'quit')
+])
 while True:
     print(
         f'\nCurrent room: {player.current_room.name}.\n'
-        f'{player.current_room.description}\n'
+        f'{player.current_room.description}\n\n'
         'Available items:'
     )
     for item in player.current_room.items:
         text = wrap(f'{item.name}: {item.description}', 60)
         for line in text:
             print(line)
-    action = input("""\nWhat would you like to do?\n
-    n - move north\n
-    s - move south\n
-    e - move east\n
-    w - move west\n
-    q - quit\n""")
-    if action not in accepted_actions:
+    choices = '\n'.join(
+        list(map(lambda action: f'{action.key} - {action.value}', accepted_actions)))
+    action = input(f'\nWhat would you like to do?\n{choices}\n')
+    if action not in list(map(lambda action: action.key, accepted_actions)):
         print('\nWhoa, try that again. Make sure you enter a valid command.')
     elif action == 'q':
         text = wrap('I never thought you were cut out for this adventure, anyway. '
