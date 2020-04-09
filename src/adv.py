@@ -100,7 +100,7 @@ while True:
         if next_room:
             player.set_room(next_room)
         else:
-            print('\nOops! There is nothing in that direction. Try again.')
+            print('Oops! There is nothing in that direction. Try again.')
     elif action == 'take':
         room_item = player.current_room.get_item(item)
         if room_item and has_light:
