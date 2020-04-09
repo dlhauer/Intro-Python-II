@@ -27,7 +27,7 @@ room = {
                      "North of you, the cave mount beckons.", [mappy, suit]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [candelabra, quill_and_ink, parchment], False),
+passages run north and east.""", [candelabra, quill_and_ink, parchment]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -38,7 +38,7 @@ to north. The smell of gold permeates the air.""", [sword, keys, envelope], Fals
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [compass]),
+earlier adventurers. The only exit is to the south.""", [compass], False),
 }
 
 room['outside'].n_to = room['foyer']
@@ -67,16 +67,18 @@ accepted_actions.extend([
 while True:
     room_light = has_light_source(player.current_room.items)
     inventory_light = has_light_source(player.inventory)
-    print(room_light, inventory_light)
-    print(
-        f'\nCurrent room: {player.current_room.name}.\n'
-        f'{player.current_room.description}\n\n'
-        'Available items:'
-    )
-    for item in player.current_room.items:
-        text = wrap(f'{item.name}: {item.description}', 60)
-        for line in text:
-            print(line)
+    if room_light or inventory_light or player.current_room.is_light:
+        print(
+            f'\nCurrent room: {player.current_room.name}.\n'
+            f'{player.current_room.description}\n\n'
+            'Available items:'
+        )
+        for item in player.current_room.items:
+            text = wrap(f'{item.name}: {item.description}', 60)
+            for line in text:
+                print(line)
+    else:
+        print("It's pitch black in here!")
     choices = '\n'.join(
         list(map(lambda action: f'{action.key} - {action.value}', accepted_actions)))
     player_input = input(f'\nWhat would you like to do?\n{choices}\n').split()
