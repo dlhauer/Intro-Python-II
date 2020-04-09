@@ -1,13 +1,14 @@
 from room import Room
 from player import Player
 from item import Item
+from item import LightSource
 from action import Action
 from textwrap import wrap
 
 mappy = Item('map', 'A dusty map. Only the faintest detail is discernible.')
 suit = Item('suit of armor', 'An old suit of iron. But where is its owner?')
-candelabra = Item(
-    'candelabra', 'The half-burned candles are still warm to the touch.')
+candelabra = LightSource(
+    'candelabra', 'The candles are still lit. But who lit them?')
 quill_and_ink = Item(
     'quill and ink', 'A worn quill tip. Enough ink only to make a few essential notes.')
 parchment = Item(
