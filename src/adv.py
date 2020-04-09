@@ -103,10 +103,12 @@ while True:
             print('\nOops! There is nothing in that direction. Try again.')
     elif action == 'take':
         room_item = player.current_room.get_item(item)
-        if room_item:
+        if room_item and has_light:
             player.add_item(room_item)
             player.current_room.remove_item(item)
             room_item.on_take()
+        elif room_item and not has_light:
+            print('LOL, good luck picking that up in the dark.')
         else:
             print(f"Say what? There's no {item} in here.")
     elif action == 'drop':
