@@ -12,6 +12,10 @@ class Room:
         self.w_to = ''
         self.items = [] if items == None else items
 
+    def get_item(self, item):
+        room_item = list(filter(lambda i: i.name == item, self.items))
+        return room_item[0] if len(room_item) else False
+
     def remove_item(self, item):
         self.items = list(filter(lambda i: i.name != item, self.items))
 
