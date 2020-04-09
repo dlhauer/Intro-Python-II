@@ -10,8 +10,4 @@ class Room:
         self.s_to = ''
         self.e_to = ''
         self.w_to = ''
-
-        if items == None:
-            self.items = []
-        else:
-            self.items = items
+        self.items = [] if self.items == None else items
