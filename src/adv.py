@@ -87,9 +87,27 @@ while True:
         for line in text:
             print(line)
         break
-    else:
+    elif action in list(map(lambda action: action.key, directions)):
         next_room = getattr(player.current_room, f'{action}_to')
         if next_room:
             player.set_room(next_room)
         else:
             print('\nOops! There is nothing in that direction. Try again.')
+    elif action == 'take':
+        room_item = player.current_room.get_item(item)
+        if room_item:
+            player.add_item(room_item)
+            player.current_room.remove_item(item)
+        else:
+            print(f"Say what? There's no {item} in here.")
+    elif action == 'drop':
+        inv_item = player.get_item(item)
+        if inv_item:
+            player.drop_item(item)
+            player.current_room.add_item(inv_item)
+        else:
+            print(f"Huh? You don't even have {item}")
+    elif action == 'i':
+        print('Your inventory:\n')
+        for item in player.inventory:
+            print(item.name)
