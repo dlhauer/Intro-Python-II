@@ -3,6 +3,7 @@ from player import Player
 from item import Item
 from item import LightSource
 from action import Action
+from helpers import has_light_source
 from textwrap import wrap
 
 mappy = Item('map', 'A dusty map. Only the faintest detail is discernible.')
@@ -26,14 +27,14 @@ room = {
                      "North of you, the cave mount beckons.", [mappy, suit]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [candelabra, quill_and_ink, parchment]),
+passages run north and east.""", [candelabra, quill_and_ink, parchment], False),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""", [rope]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", [sword, keys, envelope]),
+to north. The smell of gold permeates the air.""", [sword, keys, envelope], False),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
@@ -64,6 +65,9 @@ accepted_actions.extend([
     Action('q', 'quit')
 ])
 while True:
+    room_light = has_light_source(player.current_room.items)
+    inventory_light = has_light_source(player.inventory)
+    print(room_light, inventory_light)
     print(
         f'\nCurrent room: {player.current_room.name}.\n'
         f'{player.current_room.description}\n\n'
