@@ -10,3 +10,6 @@ class Player:
 
     def set_room(self, room):
         self.current_room = room
+
+    def add_item(self, item):
+        self.inventory.append(item)
