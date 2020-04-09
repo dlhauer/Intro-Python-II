@@ -11,6 +11,10 @@ class Player:
     def set_room(self, room):
         self.current_room = room
 
+    def get_item(self, item):
+        inv_item = list(filter(lambda i: i.name == item, self.inventory))
+        return inv_item[0] if len(inv_item) else False
+
     def add_item(self, item):
         self.inventory.append(item)
 
