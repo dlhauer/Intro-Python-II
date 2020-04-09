@@ -109,7 +109,7 @@ while True:
             player.current_room.add_item(inv_item)
             inv_item.on_drop()
         else:
-            print(f"Huh? You don't even have {item}")
+            print(f"Huh? You don't even have {item}.")
     elif action == 'i':
         if len(player.inventory):
             print('Your inventory:\n')
