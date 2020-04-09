@@ -3,9 +3,10 @@
 
 
 class Player:
-    def __init__(self, name, current_room):
+    def __init__(self, name, current_room, inventory=None):
         self.name = name
         self.current_room = current_room
+        self.inventory = [] if inventory == None else inventory
 
     def set_room(self, room):
         self.current_room = room
