@@ -99,6 +99,7 @@ while True:
         if room_item:
             player.add_item(room_item)
             player.current_room.remove_item(item)
+            room_item.on_take()
         else:
             print(f"Say what? There's no {item} in here.")
     elif action == 'drop':
@@ -106,9 +107,13 @@ while True:
         if inv_item:
             player.drop_item(item)
             player.current_room.add_item(inv_item)
+            inv_item.on_drop()
         else:
             print(f"Huh? You don't even have {item}")
     elif action == 'i':
-        print('Your inventory:\n')
-        for item in player.inventory:
-            print(item.name)
+        if len(player.inventory):
+            print('Your inventory:\n')
+            for item in player.inventory:
+                print(item.name)
+        else:
+            print("You don't have any inventory yet!")
