@@ -10,7 +10,7 @@ class Room:
         self.s_to = ''
         self.e_to = ''
         self.w_to = ''
-        self.items = [] if self.items == None else items
+        self.items = [] if items == None else items
 
     def remove_item(self, item):
         self.items = list(filter(lambda i: i.name != item, self.items))
