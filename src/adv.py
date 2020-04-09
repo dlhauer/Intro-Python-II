@@ -75,6 +75,7 @@ while True:
     choices = '\n'.join(
         list(map(lambda action: f'{action.key} - {action.value}', accepted_actions)))
     player_input = input(f'\nWhat would you like to do?\n{choices}\n').split()
+    print('\n')
     action = player_input[0]
     if len(player_input) == 2:
         item = player_input[1]
@@ -82,10 +83,10 @@ while True:
         print('\nWhoa, try that again. Make sure you enter a valid command.')
     elif action == 'q':
         text = wrap('I never thought you were cut out for this adventure, anyway. '
-                    f'Have a nice life, {player.name}, you big quitter.\n', 60)
-        print('\n')
+                    f'Have a nice life, {player.name}, you big quitter.', 60)
         for line in text:
             print(line)
+        print('\n')
         break
     elif action in list(map(lambda action: action.key, directions)):
         next_room = getattr(player.current_room, f'{action}_to')
