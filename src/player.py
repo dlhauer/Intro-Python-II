@@ -1,5 +1,6 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
+from item import LightSource
 
 
 class Player:
@@ -20,3 +21,9 @@ class Player:
 
     def drop_item(self, item):
         self.inventory = list(filter(lambda i: i.name != item, self.inventory))
+
+    def has_light_source(self):
+        for item in self.inventory:
+            if isinstance(item, LightSource):
+                return True
+        return False
