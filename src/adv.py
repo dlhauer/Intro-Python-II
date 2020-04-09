@@ -58,7 +58,9 @@ while True:
         'Available items:'
     )
     for item in player.current_room.items:
-        print(f'{item.name}: {item.description}')
+        text = wrap(f'{item.name}: {item.description}', 60)
+        for line in text:
+            print(line)
     action = input("""\nWhat would you like to do?\n
     n - move north\n
     s - move south\n
