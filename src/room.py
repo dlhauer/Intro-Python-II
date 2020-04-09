@@ -1,5 +1,6 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
+from item import LightSource
 
 
 class Room:
@@ -22,3 +23,9 @@ class Room:
 
     def add_item(self, item):
         self.items.append(item)
+
+    def has_light_source(self):
+        for item in self.items:
+            if isinstance(item, LightSource):
+                return True
+        return False
