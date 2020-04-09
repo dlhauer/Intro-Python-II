@@ -11,3 +11,9 @@ class Room:
         self.e_to = ''
         self.w_to = ''
         self.items = [] if self.items == None else items
+
+    def remove_item(self, item):
+        self.items = list(filter(lambda i: i.name != item, self.items))
+
+    def add_item(self, item):
+        self.items.append(item)
