@@ -3,7 +3,6 @@ from player import Player
 from item import Item
 from item import LightSource
 from action import Action
-from helpers import has_light_source
 from textwrap import wrap
 
 mappy = Item('map', 'A dusty map. Only the faintest detail is discernible.')
@@ -65,9 +64,10 @@ accepted_actions.extend([
     Action('q', 'quit')
 ])
 while True:
-    room_light = has_light_source(player.current_room.items)
-    inventory_light = has_light_source(player.inventory)
-    if room_light or inventory_light or player.current_room.is_light:
+    has_light = (player.has_light_source()
+                 or player.current_room.has_light_source()
+                 or player.current_room.is_light)
+    if has_light:
         print(
             f'\nCurrent room: {player.current_room.name}.\n'
             f'{player.current_room.description}\n\n'
